@@ -10,7 +10,7 @@ ftpuser="yourftpusername"
 password="yourpassword"                    #if you have special character , you can quote your password
 protocol="JNJ protocol ID"
 type=Prod
-project="PXL_project_NO"
+project="PXL_project"
 dir_raw=/projects/${project}/stats/transfer/data/raw
 dir_cust=/projects/${project}/stats/transfer/data/rawcust
 
