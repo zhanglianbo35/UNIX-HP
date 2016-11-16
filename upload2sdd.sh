@@ -16,6 +16,8 @@ echo -e $current_sdtm  "   will be upload to SDD"
  /opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword}  \
 -create_repository_file ${sdd_definedir}/${current_sdtm} ${local_definedir}/${current_sdtm}
 
+# in my own study , i need put a SDTM package copy to PK office folder, on the begin of each month
+#  if you don't need this step , you can just remove the code below. 
 export thisday=$(date +%d) 
 if (( $thisday + 0 <= 7 ))
 then   
