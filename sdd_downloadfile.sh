@@ -6,7 +6,7 @@ local_dir=/projects/jjprd224002/stats/transfer/data/rawrand
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/IVRS_IWRS
 
 
-source  /opt/pxlcommon/stats/applications/sdd/setcp
+source  /opt/pxlcommon/stats/macros/unittesting/inventory/sdd/setcp
 #download the latest IWRS data  , which is stored as sas7bdat file on SDD, named such like AML2002_ZR_yyyymmdd.sas7bdat
 # list and find the latest file
 latest_iwrs=$(/opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword} \
