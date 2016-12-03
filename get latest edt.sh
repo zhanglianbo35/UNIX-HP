@@ -4,9 +4,6 @@ source  /opt/pxlcommon/stats/applications/sdd/setcp
 sdduser=username
 sddpassword="xxxxxxxxxxxxxx"
 
-#export thisday=$(date +"%d")
-#export thismonth=$(date +"%b")
-#export thisyr=$(date +"%Y")
 
 get_latest_edt()
 {
@@ -25,7 +22,6 @@ fi
 
 if  [ "$fileinfo_old" != "$fileinfo_new" ]
 then
-
         eval latest_${1}=$(awk '{ print $1 }' ${local_dir}/.${1}_info.txt )
         latest_temp=$(eval echo \$latest_$1) 
         echo -e "\n*********************************************************************************"
@@ -53,9 +49,9 @@ then
         mv ${local_dir}/.${1}_info.txt ${local_dir}/${1}_info.txt
     fi
 else
-    echo -e "\n*****************************************************"
+    echo -e "\n***************************************************************************************"
     echo -e `cat ${local_dir}/${1}_info.txt` "  is the latest, not need update "
-    echo -e "******************************************************\n"
+    echo -e "****************************************************************************************\n"
 fi
 
 rm -f ${1}_raw ${1}_file_lst  ${1}_file_ctime  ${local_dir}/.${1}_info.txt
