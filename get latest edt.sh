@@ -25,7 +25,7 @@ then
         eval latest_${1}=$(awk '{ print $1 }' ${local_dir}/.${1}_info.txt )
         latest_temp=$(eval echo \$latest_$1) 
         echo -e "\n*********************************************************************************"
-        echo -e "$latest_temp  will be download" 
+        echo -e "\033[32m $latest_temp  will be download" 
         echo -e "*********************************************************************************\n"
 
     if (( ${#3} >1 )) 
