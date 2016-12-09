@@ -10,7 +10,7 @@ ftpuser="yourftpusername"
 password="yourpassword"                    #if you have special character , you can quote your password
 protocol="JNJ protocol ID"
 type=Prod
-project="PXL_project"
+project="PXL_project"        # eg.   jjprd224002
 dir_raw=/projects/${project}/stats/transfer/data/raw
 dir_cust=/projects/${project}/stats/transfer/data/rawcust
 
@@ -23,8 +23,8 @@ awk -F_  -v protocol=$protocol  '{ if ($0 ~ ("_" protocol) ) print "ravedata", $
 filelst=`sort -t" " -k2rn -k3rn < ftpdownload1.txt | awk '!x[$1]++' | sort -k1 | awk -F' ' '{if ($1=="cust") print "latestcust="$(NF); if ($1=="ravedata") print "latestraw="$(NF)}'`
 eval $filelst
 echo "******************************************"
-echo "lastest ravedata is: " $latestraw
-echo "lastest custom domain is: " $latestcust
+echo -e "\033[32m lastest ravedata is: " $latestraw  "\033[0m"
+echo -e "\033[32m lastest custom domain is: " $latestcust  "\033[0m"
 echo "******************************************"
 
 rm -f ${dir_raw}/*.*
