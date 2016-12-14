@@ -94,7 +94,7 @@ get_latest_edt  zr  "AML2002_ZR_........\.sas7bdat"   "***.sas7bdat"
 #-----------------------Sample tracking ----------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/LAB/Biomarkers
-get_latest_edt  st  "_ST_........_.*\.zip"  "_ST_........_.*\.zip"  "containertrac.sas7bdat   samptrac.sas7bdat"
+get_latest_edt  st  "_ST_........_.*\.zip"  "*_ST_........_.*\.zip"  "containertrac.sas7bdat   samptrac.sas7bdat"
 
 #-----------------------BCP ------------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
@@ -110,19 +110,19 @@ get_latest_edt  pra  "_LIMS_........\.zip"  "JNJ56022473AML2002_LIMS*.*"  "jnj56
 #--------------------BARC Covance_lb ------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/LAB/Biomarkers
-get_latest_edt  covance_lb  "_LB_........_.*\.ZIP" "_LB_........_.*\.ZIP"  "covance_lb.sas7bdat"
+get_latest_edt  covance_lb  "_LB_........_.*\.ZIP" "*_LB_........_.*\.ZIP"  "covance_lb.sas7bdat"
 
 
 #--------------------BARC Covance_pr ------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/LAB/Biomarkers
-get_latest_edt  covance_pr  "_PR_........_.*\.ZIP" "_PR_........_.*\.ZIP"  "covance_pr.sas7bdat"
+get_latest_edt  covance_pr  "_PR_........_.*\.ZIP" "*_PR_........_.*\.ZIP"  "covance_pr.sas7bdat"
 
 
 #--------------------VUMC ------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/LAB 
-get_latest_edt  vumc  "_LB_VUMC_........\.csv" "_LB_VUMC_........\.csv" 
+get_latest_edt  vumc  "_LB_VUMC_........\.csv" "*_LB_VUMC_........\.csv" 
 
 #--------------------JNJ heme ----------if your target filename contain space or other string,  please use \ escape them -----
 local_dir=~/test
