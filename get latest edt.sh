@@ -9,7 +9,7 @@ get_latest_edt()
 #@USAGE get_latest_edt edt_name file_match_partten  old_zipfile  old_file_extra
 /opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword} -repository_list ${sdd_dir} -verbose -showChildren > ${1}_raw
 grep -i "path:" ${1}_raw |sed 's/^path:\ //g'  > ${1}_file_lst
-grep -i "Attribute created has value:" ${1}_raw |sed 's/^[ \t]*//;s/[ \t]*$//' |  tr " " "\t"  >   ${1}_file_ctime
+grep -i "Attribute lastModified has value:" ${1}_raw |sed 's/^[ \t]*//;s/[ \t]*$//' |  tr " " "\t"  >   ${1}_file_ctime
 awk -F'\t' '{print $7 , $6 , $10 , $8 }' ${1}_file_ctime | while read day monthname year ptime
  do
   monthname=${monthname^^}
@@ -72,7 +72,7 @@ cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt
     fi
 
 else
-    echo -e `cat ${local_dir}/${1}_info.txt` "  is the latest, not need update "
+    echo -e `cat ${local_dir}/${1}_info.txt` "  is the latest, no need update "
 fi
 
 rm -f ${1}_raw ${1}_file_lst  ${1}_file_ctime*  ${local_dir}/.${1}_info.txt
