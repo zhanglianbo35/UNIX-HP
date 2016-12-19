@@ -28,7 +28,7 @@ echo -e "\033[32m lastest custom domain is: " $latestcust  "\033[0m"
 rm -f ${dir_raw}/*.*
 rm -f ${dir_cust}/*.*
 
-/opt/pdag/bin/curl  --ftp-pasv  --ftp-ssl -u ${ftpuser}:${password} -k -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestraw  \
+/usr/local/bin/curl --ftp-pasv  --ftp-ssl -u ${ftpuser}:${password} -k -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestraw  \
 -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestcust   
 
 mv $latestraw  $dir_raw
