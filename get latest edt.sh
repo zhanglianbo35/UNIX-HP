@@ -89,7 +89,7 @@ unset latest_temp
 #-----------------------IWRS ZR ----------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/rawrand
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/IVRS_IWRS
-get_latest_edt  zr  "AML2002_ZR_........\.sas7bdat"   "***.sas7bdat"
+get_latest_edt  zr  "AML2002_ZR_........\.sas7bdat"   "*zr*.sas7bdat"
 
 #-----------------------Sample tracking ----------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
