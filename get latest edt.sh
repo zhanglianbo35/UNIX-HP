@@ -52,11 +52,11 @@ then
 
     if (( ${#3} >1 )) 
     then
-        rm -f "${local_dir}/${3}" 
+        rm -f ${local_dir}/${3} 
     fi
     if (( ${#4} >1 )) 
     then
-        rm -f "${local_dir}/${4}"
+        rm -f ${local_dir}/${4}
     fi
 
 	/opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
