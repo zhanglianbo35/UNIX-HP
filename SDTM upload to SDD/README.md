@@ -1,4 +1,4 @@
-# Upload SDTM define package to SDD.
+# Upload SDTM define package to SDD. Modify these info before you use it
 
 # your SDD account info
 sdduser=yoursddusername
