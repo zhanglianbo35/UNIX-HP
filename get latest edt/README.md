@@ -12,7 +12,7 @@ we have 4 paramter in this function:  1st one is the edtname (just a simple name
 you need quote the 3rd and 4th parameter
 
 
-#  I will list the code you need update in script
+#  I will list the part you need update in script
 
 # 1, update user SDD account info
 sdduser=username
