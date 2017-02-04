@@ -6,6 +6,7 @@
 source /home/users/YOUR_username/.bashrc   
 # your Janssen FTP account info
 ftpuser="yourftpusername"
+
 password="yourpassword"                    #if you have special character , you can quote your password
 
 # your study's protocol ID
