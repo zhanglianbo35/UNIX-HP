@@ -1,6 +1,6 @@
 This script is used for check and download the latest edt on Janssen SDD. I developed a function get_latest_edt{} inside, user need to modify the study info and edt info inside, then all the lastest eDT can be download to kennet automaticlly.
 
-# basic syntx is like 
+# basic syntax is like 
 
 get_latest_edt   edtname1  "edt1 filename keyword"   "old edt1(need to be removed in kennet) filename keyword"
 
