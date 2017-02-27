@@ -7,8 +7,7 @@ sddpassword="xxxxxxxxxxxxxx"
 get_latest_edt()
 {
 #@USAGE get_latest_edt edt_name file_match_partten  old_zipfile  old_file_extra
-sddurl="https://jajprod.ondemand.sas.com"
-/opt/java7/bin/java sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -repository_list ${sdd_dir} -verbose -showChildren > ${1}_raw
+javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -repository_list ${sdd_dir} -verbose -showChildren > ${1}_raw
 grep -i "path:" ${1}_raw |sed 's/^path:\ //g'  > ${1}_file_lst
 grep -i "Attribute lastModified has value:" ${1}_raw |sed 's/^[ \t]*//;s/[ \t]*$//' |  tr " " "\t"  >   ${1}_file_ctime
 awk -F'\t' '{print $7 , $6 , $10 , $8 }' ${1}_file_ctime | while read day monthname year ptime
@@ -60,7 +59,7 @@ then
         rm -f ${local_dir}/${4}
     fi
 
-	/opt/java7/bin/java sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
+    javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
 
     if [ "$(echo $latest_temp | awk -F. '{print tolower($(NF))}')" = "zip" ]
     then
