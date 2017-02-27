@@ -8,7 +8,8 @@ sdd_definedir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/Cu
 input4pk=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/Input_Data_For_PK_Office
 
 
-source  /opt/pxlcommon/stats/macros/unittesting/inventory/sdd/setcp 
+source  /opt/pxlcommon/stats/applications/sdd/setcp
+
 current_sdtm=$(cd ${local_definedir} ;\
 ls -l *prod*.zip | awk -F_ '{print substr($(NF),1,8) , $0}' | sort -k1n | awk 'END{print $(NF)}' );\
 echo -e $current_sdtm  "   will be upload to SDD"
