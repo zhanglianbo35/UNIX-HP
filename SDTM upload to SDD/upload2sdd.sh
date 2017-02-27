@@ -12,8 +12,8 @@ source  /opt/pxlcommon/stats/macros/unittesting/inventory/sdd/setcp
 current_sdtm=$(cd ${local_definedir} ;\
 ls -l *prod*.zip | awk -F_ '{print substr($(NF),1,8) , $0}' | sort -k1n | awk 'END{print $(NF)}' );\
 echo -e $current_sdtm  "   will be upload to SDD"
-
- /opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword}  \
+sddurl="https://jajprod.ondemand.sas.com"
+/opt/java7/bin/java sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword}  \
 -create_repository_file ${sdd_definedir}/${current_sdtm} ${local_definedir}/${current_sdtm}
 
 # in my own study , i need put a SDTM package copy to PK office folder, on the begin of each month
@@ -22,6 +22,6 @@ export thisday=$(date +%d)
 if (( $((10#$thisday))  <  7 )) || [ "$1" == "pk" ]
 then   
   echo "send an copy to SG PK office" 
-  /opt/java6/bin/java sample.SASDrugDevCommand -s https://sddcampine.ondemand.sas.com -u ${sdduser} -p ${sddpassword}  \
+  /opt/java7/bin/java sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword}  \
   -create_repository_file ${input4pk}/${current_sdtm} ${local_definedir}/${current_sdtm}
 fi
