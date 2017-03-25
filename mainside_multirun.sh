@@ -59,7 +59,7 @@ cp *.xml  define.xml
 TZ=GMT-8; export TZ; date
 datename=$(date +%Y%m%d)
 zip -r /projects/${project}/stats/transfer/prog/define/define_xml/${protocol}_SDTM_${type}_Transfer_$datename.zip *  -x"define_20*.xml"
-sleep 3
+
 rm -f /projects/${project}/stats/transfer/prog/define/define_xml/output/define.xml
 
 TZ=EST5EDT; export TZ;
