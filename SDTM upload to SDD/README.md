@@ -13,7 +13,7 @@ sdd_definedir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/Cu
 
 # for save a copy to PK office folder,  if your study not need it,  please remove last part in code
 
-#syntax like  below,  normally you don't need modify the code inside function  upload2sdd(){ }
+# syntax like  below,  normally you don't need modify the code inside function  upload2sdd(){ }
 upload2sdd prod  
 upload2sdd cutoff  
 upload2sdd test  
