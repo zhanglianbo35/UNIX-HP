@@ -58,7 +58,7 @@ unset type
  
 }
  
- 
+# user can adjust the code below according to your situation
 upload2sdd prod 
 #*** if user have also cutoff transfer as well as prod transfer,  just uncomment below row ****
 #upload2sdd cutoff 
@@ -75,12 +75,3 @@ if (( $((10#$thisday)) <  7 )) && [  "$prodYN" = "Y" ]  # transfer one copy to P
 fi
 
  
- 
- 
- 
- 
- 
- 
- 
-
-
