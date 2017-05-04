@@ -69,7 +69,7 @@ if  [ "$fileinfo_old" != "$fileinfo_new" ]
     then
 	   if [ "$zippasswd" != ""]
 	   then
-	    unzip -o -LL -p ${zippasswd}   ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+	    unzip -o -LL -P ${zippasswd}   ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
 	   else		 
 		unzip -o -LL ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
        fi
