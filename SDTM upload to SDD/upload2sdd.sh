@@ -22,6 +22,11 @@ upload2sdd()
 
 	eval sdd_definedir=\$sdd_define_${type}_dir 
 
+	if [  "${type,,}" = "prod" ] 
+	then 
+	  prodYN="Y"
+	fi
+
 	if [  "${type,,}" = "pk" ]  # we just send prod transfer to PK office folder
 	then 
 	  type=prod
@@ -67,11 +72,3 @@ fi
 
  
  
- 
- 
- 
- 
- 
- 
-
-
