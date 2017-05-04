@@ -48,32 +48,36 @@ else
 fi
 
 if  [ "$fileinfo_old" != "$fileinfo_new" ]
-then
-
-        eval latest_${1}="$(awk -F'\t' '{ print $1 }' ${local_dir}/.${1}_info.txt )"
-        latest_temp="$(eval echo \$latest_$1)" 
-
-        echo -e "\033[32m $latest_temp  will be download \033[0m" 
+ then
+     eval latest_${1}="$(awk -F'\t' '{ print $1 }' ${local_dir}/.${1}_info.txt )"
+     latest_temp="$(eval echo \$latest_$1)" 
+     
+     echo -e "\033[32m $latest_temp  will be download \033[0m" 
 
     if (( ${#3} >1 )) 
     then
-        rm -f ${local_dir}/${3} 
+       rm -f ${local_dir}/${3} 
     fi
     if (( ${#4} >1 )) 
     then
-        rm -f ${local_dir}/${4}
+       rm -f ${local_dir}/${4}
     fi
 
     $javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
 
     if [ "$(echo $latest_temp | awk -F. '{print tolower($(NF))}')" = "zip" ]
     then
-        unzip -o -LL ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
-    elif [ $(echo $latest_temp | awk -F. '{print tolower($(NF))}') = "sas7bdat" ] && [ $(echo $latest_temp | awk -F/ '{print tolower($(NF))}') != $(echo $latest_temp | awk -F/ '{print $(NF)}') ]
+	   if [ "$zippasswd" != ""]
+	   then
+	    unzip -o -LL -p ${zippasswd}   ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+	   else		 
+		unzip -o -LL ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+       fi
+	elif [ $(echo $latest_temp | awk -F. '{print tolower($(NF))}') = "sas7bdat" ] && [ $(echo $latest_temp | awk -F/ '{print tolower($(NF))}') != $(echo $latest_temp | awk -F/ '{print $(NF)}') ]
     then
-     mv  ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' )  ${local_dir}/$(echo "$latest_temp" | awk -F/ '{print $(NF)}'| tr '[A-Z]' '[a-z]') && cat ${local_dir}/.${1}_info.txt | tr '\t' ' ' > ${local_dir}/${1}_info.txt
+      mv  ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' )  ${local_dir}/$(echo "$latest_temp" | awk -F/ '{print $(NF)}'| tr '[A-Z]' '[a-z]') && cat ${local_dir}/.${1}_info.txt | tr '\t' ' ' > ${local_dir}/${1}_info.txt
     else
-cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+	  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
     fi
 
 else
@@ -83,7 +87,7 @@ fi
 rm -f ${1}_raw ${1}_file_lst  ${1}_file_ctime*  ${local_dir}/.${1}_info.txt
 
 
-
+unset zippasswd
 unset local_dir
 unset sdd_dir
 unset fileinfo_old
@@ -104,6 +108,9 @@ get_latest_edt  st  "_ST_........_.*\.zip"  "*_ST_*_*.zip"  "containertrac.sas7b
 #-----------------------BCP ------------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/PK_Office/PC_Sample_Identifier
+#******if your zip file contains zip file , then assgin the password just before execute the function
+#******if don't have password, you don't need define this variable
+zippasswd="zip file password"
 get_latest_edt  bcp "_SAMPID_........\.zip"  "JNJ56022473AML2002_SAMPID*.zip"  "*aml2002_sampid***.*"
 
 #-----------------------PRA LIMS ------------------------------------------------------
@@ -132,4 +139,5 @@ get_latest_edt  vumc  "_LB_VUMC_........\.csv" "*_LB_VUMC_*.csv"
 #--------------------JNJ heme ----------if your target filename contain space or other string,  please use \ escape them -----
 local_dir=~/test
 sdd_dir=/SAS/4207/63935937MYF2001/Files/Staging/LAB_JNJ_HEME
+
 get_latest_edt  heme  "_hTERT\ Data\ Table_......\.xlsx" "*_hTERT Data Table_*.xlsx" 
