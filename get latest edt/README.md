@@ -32,6 +32,11 @@ get_latest_edt  zr  "AML2002_ZR_........\.sas7bdat"   "*zr*.sas7bdat"
 # example for zip file edt
 get_latest_edt  st  "_ST_........_.*\.zip"  "*_ST_*_*.zip"  "containertrac.sas7bdat   samptrac.sas7bdat"
 
+# example for zip file edt contains password protect
+zippasswd="zip file password"
+get_latest_edt  st  "_ST_........_.*\.zip"  "*_ST_*_*.zip"  "containertrac.sas7bdat   samptrac.sas7bdat"
+
+
 # example for other file format
 get_latest_edt  vumc  "_LB_VUMC_........\.csv" "*_LB_VUMC_*.csv" 
 
