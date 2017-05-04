@@ -7,35 +7,22 @@ sddpassword=yoursddpassword
 #  Don't add '/' on the end of the path
 local_definedir=/projects/jjprd224002/stats/transfer/outputs/define
 
-# **  define your LSAF location for different type's transfer  ****
+# **  define your LSAF location for different type's transfer , don't change the variable name  ****
 
 sdd_define_prod_dir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/Current          # prod transfer
-sdd_define_UAT_dir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/UAT/Current       # UAT transfer 
+sdd_define_test_dir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/UAT/Current      # UAT transfer 
 sdd_define_cutoff_dir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/SDTM_XPT_Package/UAT            # cutoff transfer
 sdd_define_pk_dir=/SAS/3952/56022473AML2002/Files/Staging/DM_CRO/Input_Data_For_PK_Office            # PK office transfer
 	
-	
+#---------------------------------------------------------------------------------------------------------------------	
 upload2sdd()
 {
  # user can define type  as  prod , test, cutoff ,PK
 	type=$1
-	type=${type,,}
 
-	if  [  "$type" = "test" ]
-	then
-	  sdd_definedir=$sdd_define_UAT_dir
-	elif [  "$type" = "cutoff" ]
-	then
-	  sdd_definedir=$sdd_define_cutoff_dir
-	elif [  "$type" = "pk" ]
-	then
-	  sdd_definedir=$sdd_define_pk_dir
-	else
-	  sdd_definedir=$sdd_define_prod_dir
-	  export prodYN=Y
-	fi
+	eval sdd_definedir=\$sdd_define_${type}_dir 
 
-	if [  "$type" = "pk" ]  # we just send prod transfer to PK office folder
+	if [  "${type,,}" = "pk" ]  # we just send prod transfer to PK office folder
 	then 
 	  type=prod
 	fi
@@ -58,7 +45,11 @@ unset type
  
 }
  
-# user can adjust the code below according to your situation
+#-------------------------------------------------------------------------------------------------------------------------------------
+ 
+#update the code below according to your requirement
+ 
+ 
 upload2sdd prod 
 #*** if user have also cutoff transfer as well as prod transfer,  just uncomment below row ****
 #upload2sdd cutoff 
@@ -75,3 +66,12 @@ if (( $((10#$thisday)) <  7 )) && [  "$prodYN" = "Y" ]  # transfer one copy to P
 fi
 
  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
