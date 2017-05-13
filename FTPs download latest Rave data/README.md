@@ -12,7 +12,7 @@ password="yourpassword"                    #if you have special character , you 
 # your study's protocol ID
 protocol="JNJ protocol ID"
 #  PROD or UAT  , case insensitive
-type=Prod
+type=PORD
 #  root folder on kennet
 project="PXL_project"                      # eg.   jjprd224002
 #  rave data dir on kennet
