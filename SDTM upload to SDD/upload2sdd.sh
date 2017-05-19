@@ -43,7 +43,7 @@ upload2sdd()
       exit 1
    fi
 	
-	$javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -create_repository_file ${sdd_definedir}/${current_sdtm} ${local_definedir}/${current_sdtm}
+	$javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -create_repository_file "${sdd_definedir}/${current_sdtm}" "${local_definedir}/${current_sdtm}"
 
 unset sdd_definedir
 unset type
