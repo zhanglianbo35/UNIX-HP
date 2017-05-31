@@ -20,7 +20,7 @@ upload2sdd()
  # user can define type  as  prod , test, cutoff ,PK
 	type=$1
 
-	eval sdd_definedir=\$sdd_define_${type}_dir 
+	eval sdd_definedir=\$sdd_define_${type,,}_dir 
 
 	if [  "${type,,}" = "prod" ] 
 	then 
