@@ -15,7 +15,7 @@ dir_cust=/projects/${project}/stats/transfer/data/rawcust
 
 #type=${type^^}
 protocol=${protocol^^}
-/usr/local/bin/curl  --ftp-pasv  --ftp-ssl -u ${ftpuser}:${password} -k ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/ > ftpdownload.txt
+/usr/local/bin/curl  --ftp-pasv  --ftp-ssl -u "${ftpuser}":"${password}" -k ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/ > ftpdownload.txt
 awk -F_  -v protocol=$protocol  '{ if ($0 ~ ("_" protocol) ) print "ravedata", $(NF-1), substr($(NF),1,6) , $0 ; if ($0 ~ (" " protocol))  print "cust", $(NF-1), substr($(NF),1,6) , $0 }' ftpdownload.txt > ftpdownload1.txt
 
 filelst=`sort -t" " -k2rn -k3rn < ftpdownload1.txt | awk '!x[$1]++' | sort -k1 | awk -F' ' '{if ($1=="cust") print "latestcust="$(NF); if ($1=="ravedata") print "latestraw="$(NF)}'`
@@ -26,7 +26,7 @@ echo -e "\033[32m lastest custom domain is: " $latestcust  "\033[0m"
 rm -f ${dir_raw}/*.*
 rm -f ${dir_cust}/*.*
 
-/usr/local/bin/curl --ftp-pasv  --ftp-ssl -u ${ftpuser}:${password} -k -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestraw  \
+/usr/local/bin/curl --ftp-pasv  --ftp-ssl -u "${ftpuser}":"${password}" -k -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestraw  \
 -O  ftp://jnj2.ftp.mdsol.com/${protocol}/${type}/$latestcust   
 
 mv $latestraw  $dir_raw
