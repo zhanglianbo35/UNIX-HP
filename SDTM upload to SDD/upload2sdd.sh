@@ -32,8 +32,7 @@ upload2sdd()
 	  type=prod
 	fi
 	
-	current_sdtm=$(cd ${local_definedir} ;\
-	ls -l *${type}*.zip | awk -F_ '{print substr($(NF),1,8) , $0}' | sort -k1n | awk 'END{print $(NF)}' );\
+	current_sdtm=$(cd ${local_definedir} ;ls -ltr *${type}*.zip | awk 'END {print $(NF)}' ) 
 	echo -e $current_sdtm  "   will be upload to SDD"
 	sddurl="https://jajprod.ondemand.sas.com"
 	
