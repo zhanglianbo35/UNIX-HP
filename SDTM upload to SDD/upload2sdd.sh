@@ -33,7 +33,7 @@ upload2sdd()
 	fi
 	
 	current_sdtm=$(cd ${local_definedir} ;ls -ltr *${type}*.zip | awk 'END {print $(NF)}' ) 
-	echo -e $current_sdtm  "   will be upload to SDD"
+	echo -e "\033[32m $current_sdtm  "   will be upload to SDD \033[0m"
 	sddurl="https://jajprod.ondemand.sas.com"
 	
 # test whether it can be connected to LSAF , if fail then stop script
