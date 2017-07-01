@@ -8,8 +8,7 @@ get_latest_edt()
 {
 #@USAGE get_latest_edt edt_name file_match_partten  old_zipfile  old_file_extra
 # test whether it can be connected to LSAF , if fail then stop script
- if [[ "$($javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -test)" != "Connection successful!"  ]]
- then
+ if [[ "$($javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -test)" != "Connection successful!"  ]] ; then
    exit 1
  fi
 $javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -repository_list ${sdd_dir} -verbose -showChildren > ${1}_raw
@@ -40,44 +39,37 @@ paste -d'\t' ${1}_file_ctime_num  ${1}_file_ctime  ${1}_file_lst | grep -i  "$2"
  sort -t $'\t' -k1n | tail -n 1 | cut -d$'\t' -f2- | sed 's/ /\\ /g' > ${local_dir}/.${1}_info.txt
  
 fileinfo_new="$(cat ${local_dir}/.${1}_info.txt | tr '\t' ' ')"
-if  [  -f ${local_dir}/${1}_info.txt ]
-then
+if [  -f ${local_dir}/${1}_info.txt ] ; then
   fileinfo_old="$(cat ${local_dir}/${1}_info.txt)"
 else
   fileinfo_old=""
 fi
 
-if  [ "$fileinfo_old" != "$fileinfo_new" ]
- then
+if [ "$fileinfo_old" != "$fileinfo_new" ] ; then
      eval latest_${1}="$(awk -F'\t' '{ print $1 }' ${local_dir}/.${1}_info.txt )"
      latest_temp="$(eval echo \$latest_$1)" 
      
      echo -e "\033[32m $latest_temp  will be download \033[0m" 
 
-    if (( ${#3} >1 )) 
-    then
+    if (( ${#3} >1 )) ; then
        rm -f ${local_dir}/${3} 
     fi
-    if (( ${#4} >1 )) 
-    then
+    if (( ${#4} >1 )) ; then
        rm -f ${local_dir}/${4}
     fi
 
     $javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
 
-    if [ "$(echo $latest_temp | awk -F. '{print tolower($(NF))}')" = "zip" ]
-    then
-	   if [ "$zippasswd" != "" ] 
-	   then
-	    unzip -o -LL -P ${zippasswd}   ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+    if [ "$(echo $latest_temp | awk -F. '{print tolower($(NF))}')" = "zip" ] ; then
+	   if [ "$zippasswd" != "" ] ; then
+	     unzip -o -LL -P ${zippasswd}   ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
 	   else		 
-		unzip -o -LL ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
-       fi
-	elif [ $(echo $latest_temp | awk -F. '{print tolower($(NF))}') = "sas7bdat" ] && [ $(echo $latest_temp | awk -F/ '{print tolower($(NF))}') != $(echo $latest_temp | awk -F/ '{print $(NF)}') ]
-    then
+	     unzip -o -LL ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' ) -d  ${local_dir}  &&  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+           fi
+    elif [ $(echo $latest_temp | awk -F. '{print tolower($(NF))}') = "sas7bdat" ] && [ $(echo $latest_temp | awk -F/ '{print tolower($(NF))}') != $(echo $latest_temp | awk -F/ '{print $(NF)}') ] ; then
       mv  ${local_dir}/$( echo "$latest_temp" | awk -F/  '{print $(NF) }' )  ${local_dir}/$(echo "$latest_temp" | awk -F/ '{print $(NF)}'| tr '[A-Z]' '[a-z]') && cat ${local_dir}/.${1}_info.txt | tr '\t' ' ' > ${local_dir}/${1}_info.txt
     else
-	  cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
+      cat ${local_dir}/.${1}_info.txt | tr '\t' ' '>  ${local_dir}/${1}_info.txt 
     fi
 
 else
