@@ -62,7 +62,7 @@ upload2sdd prod
 # this part only for  PK office transfer, user can remove this place , if you don't need 
  
 thisday=$(date +%d)  
-if (( $((10#$thisday)) <  7 )) && [  "$prodYN" = "Y" ]  # transfer one copy to PK office folder in beginning of each month
+if (( $((10#$thisday)) <  7 )) || [ "$1" = "pk" ] && [  "$prodYN" = "Y" ]  # transfer one copy to PK office folder in beginning of each month
   then 
 	  echo "send an copy to SG PK office"
 	  unset prodYN
