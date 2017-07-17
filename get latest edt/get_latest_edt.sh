@@ -100,8 +100,8 @@ get_latest_edt  st  "_ST_........_.*\.zip"  "*_ST_*_*.zip"  "containertrac.sas7b
 #-----------------------BCP ------------------------------------------------------------
 local_dir=/projects/jjprd224002/stats/transfer/data/edt
 sdd_dir=/SAS/3952/56022473AML2002/Files/Staging/PK_Office/PC_Sample_Identifier
-#******if your zip file contains zip file , then assgin the password just before execute the function
-#******if don't have password, you don't need define this variable
+# if your zip file contains password, then assgin the password just before execute the function
+# if no password, you don't need define this variable, just remove
 zippasswd="zip file password"
 get_latest_edt  bcp "_SAMPID_........\.zip"  "JNJ56022473AML2002_SAMPID*.zip"  "*aml2002_sampid***.*"
 
