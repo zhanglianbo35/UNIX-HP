@@ -52,10 +52,12 @@ if [ "$fileinfo_old" != "$fileinfo_new" ] ; then
      echo -e "\033[32m $latest_temp  will be download \033[0m" 
 
     if (( ${#3} >1 )) ; then
-       rm -f ${local_dir}/${3} 
+      cd ${local_dir} && rm -f ${3}
+      cd -
     fi
     if (( ${#4} >1 )) ; then
-       rm -f ${local_dir}/${4}
+      cd ${local_dir} && rm -f ${4}
+      cd -
     fi
 
     $javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
