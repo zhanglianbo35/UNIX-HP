@@ -53,11 +53,11 @@ if [ "$fileinfo_old" != "$fileinfo_new" ] ; then
 
     if (( ${#3} >1 )) ; then
       cd ${local_dir} && rm -f ${3}
-      cd -
+      cd $OLDPWD
     fi
     if (( ${#4} >1 )) ; then
       cd ${local_dir} && rm -f ${4}
-      cd -
+      cd $OLDPWD
     fi
 
     $javaexe sample.SASDrugDevCommand -s $sddurl -u ${sdduser} -p ${sddpassword} -download_repository_file "$latest_temp"    "${local_dir}/$( echo $latest_temp | awk -F/  '{print $(NF) }' )"
