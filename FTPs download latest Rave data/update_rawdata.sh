@@ -7,7 +7,7 @@ source /home/users/YOUR_username/.bashrc   #insert your username here, eg. zhang
 ftpuser="yourftpusername"
 password="yourpassword"                    #if you have special character , you can quote your password
 protocol="JNJ protocol ID"
-type=PORD
+type=PROD
 project="PXL_project"                      # eg.   jjprd224002
 dir_raw=/projects/${project}/stats/transfer/data/raw
 dir_cust=/projects/${project}/stats/transfer/data/rawcust
