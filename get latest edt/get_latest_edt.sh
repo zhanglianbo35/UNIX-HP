@@ -68,10 +68,10 @@ if [ "$fileinfo_old" != "$fileinfo_new" ] ; then
 
     if [ ${fileextend,,} = "zip" ] ; then
 	   if [ "$zippasswd" != "" ] ; then
-	     unzipexe="unzip -o -LL -P ${zippasswd}"
+	     unzipexe="$(eval echo unzip -o -LL -P \${zippasswd})"
 	   else	
          unzipexe="unzip -o -LL"
-       if	   
+       fi	   
 	 $unzipexe ${local_dir}/$targetfile -d  ${local_dir}  
     elif [ ${fileextend,,} = "sas7bdat" ] && [ ${targetfile,,} != ${targetfile} ] ; then
       mv  ${local_dir}/$targetfile  ${local_dir}/${targetfile,,}  
