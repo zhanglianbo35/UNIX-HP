@@ -1,0 +1,32 @@
+
+baseroot=/c/Users/kcsb505/Downloads/sdd-java-api-client-1.7.3
+classpath=${baseroot}:${baseroot}/samples/
+
+# Need this for spring injection to work.
+classpath=$classpath:lib/aopalliance-1.0.0.0_SAS_20100917120439.jar
+
+# Need these for the httpclient
+classpath=$classpath:lib/commons-codec-1.9.jar
+classpath=$classpath:lib/httpclient-4.3.5.jar
+classpath=$classpath:lib/httpcore-4.3.2.jar
+classpath=$classpath:lib/httpmime-4.3.5.jar
+classpath=$classpath:lib/commons-io-1.4.0.0_SAS_20100917120335.jar
+classpath=$classpath:lib/commons-logging-1.2.jar
+classpath=$classpath:lib/log4j-1.2.15.0_SAS_20100917120336.jar
+
+# Need spring to find services from the client side...
+classpath=$classpath:lib/spring-aop-4.0.6.RELEASE.jar
+classpath=$classpath:lib/spring-beans-4.0.6.RELEASE.jar
+classpath=$classpath:lib/spring-context-4.0.6.RELEASE.jar
+classpath=$classpath:lib/spring-core-4.0.6.RELEASE.jar
+classpath=$classpath:lib/spring-expression-4.0.6.RELEASE.jar
+classpath=$classpath:lib/spring-web-4.0.6.RELEASE.jar
+
+# The client api jar depends upon jdom
+classpath=$classpath:lib/jdom-1.1.1.0_SAS_20100917120336.jar
+
+# Client API framework
+classpath=$classpath:lib/sas.hls.drug.api.client.jar
+
+export javaexe=/c/ProgramData/Oracle/Java/javapath/java
+export sddurl=https://jajprod.ondemand.sas.com
