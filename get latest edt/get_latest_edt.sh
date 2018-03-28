@@ -51,7 +51,7 @@ if [ "$fileinfo_old" != "$fileinfo_new" ] ; then
 #new edt file info{	 
      latest_temp="$(eval echo \$latest_$1)" 
      targetfile="${latest_temp##*/}"
-	 fileextend="${targetfile##*.}"
+     fileextend="${targetfile##*.}"
 #-----------------}	 
      echo -e "\033[32m $latest_temp  will be download \033[0m" 
 
