@@ -37,12 +37,12 @@ upload2sdd()
 	sddurl="https://jajprod.ondemand.sas.com"
 	
 # test whether it can be connected to LSAF , if fail then stop script
-   if [[ "$($javaexe sample.SASDrugDevCommand -s $sddurl -u "${sdduser}" -p "${sddpassword}" -test)" != "Connection successful!"  ]]
+   if [[ "$($javaexe sample.SASLsafCommand -s $sddurl -u "${sdduser}" -p "${sddpassword}" -test)" != "Connection successful!"  ]]
     then
       exit 1
    fi
 	
-	$javaexe sample.SASDrugDevCommand -s $sddurl -u "${sdduser}" -p "${sddpassword}" -create_repository_file "${sdd_definedir}/${current_sdtm}" "${local_definedir}/${current_sdtm}"
+	$javaexe sample.SASLsafCommand -s $sddurl -u "${sdduser}" -p "${sddpassword}" -create_repository_file "${sdd_definedir}/${current_sdtm}" "${local_definedir}/${current_sdtm}"
 
 unset sdd_definedir
 unset type
